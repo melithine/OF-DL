@@ -29,16 +29,17 @@ jobs:
 
       - name: Run build
         run: |
-          dotnet publish -p Version=${{ steps.version.outputs.version }} -c Release -o out
+          dotnet publish -p Version=${{ steps.version.outputs.version }} --property WarningLevel=0 -c Release -o out
           pwd
           ls -la 
           ls -la ./OF\ DL/
           cp ./OF\ DL/rules.json out/
-          cp ./OF\ DL/config.json out/
-          cp ./OF\ DL/auth.json out/
+          # cp ./OF\ DL/config.json out/
+          # cp ./OF\ DL/auth.json out/
           cd out
           mkdir -p cdm/devices/chrome_1610
           zip ../${{ github.ref }}.zip OF\ DL.exe e_sqlite3.dll *.json cdm
+          cd ..
 
       - name: release
         uses: actions/create-release@v1
