@@ -38,7 +38,7 @@ jobs:
           # cp ./OF\ DL/auth.json out/
           cd out
           mkdir -p cdm/devices/chrome_1610
-          zip ../${{ github.ref }}.zip OF\ DL.exe e_sqlite3.dll *.json cdm
+          zip ../OFDLV${{ steps.version.outputs.version }}.zip OF\ DL.exe e_sqlite3.dll *.json cdm
           cd ..
 
       - name: release
@@ -59,6 +59,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ github.ref }}.zip
-          asset_name: ${{ github.ref }}.zip
+          asset_path: ./${{ steps.version.outputs.version }}.zip
+          asset_name: ${{ steps.version.outputs.version }}.zip
           asset_content_type: application/zip
