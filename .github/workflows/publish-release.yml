@@ -31,10 +31,11 @@ jobs:
         run: |
           dotnet publish -p Version=${{ steps.version.outputs.version }} -c Release -o out
           pwd
-          ls -la
-          cp ./OF-DL/rules.json out/
-          cp ./OF-DL/config.json out/
-          cp ./OF-DL/auth.json out/
+          ls -la 
+          ls -la ./OF\ DL/
+          cp ./OF\ DL/rules.json out/
+          cp ./OF\ DL/config.json out/
+          cp ./OF\ DL/auth.json out/
           cd out
           mkdir -p cdm/devices/chrome_1610
           zip ../${{ github.ref }}.zip OF\ DL.exe e_sqlite3.dll *.json cdm
