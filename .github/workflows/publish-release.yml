@@ -33,12 +33,13 @@ jobs:
           pwd
           ls -la 
           ls -la ./OF\ DL/
+          ls -la out/
           cp ./OF\ DL/rules.json out/
           # cp ./OF\ DL/config.json out/
           # cp ./OF\ DL/auth.json out/
           cd out
           mkdir -p cdm/devices/chrome_1610
-          zip ../OFDLV${{ steps.version.outputs.version }}.zip OF\ DL.exe e_sqlite3.dll *.json cdm
+          zip ../OFDLV${{ steps.version.outputs.version }}.zip OF\ DL.exe e_sqlite3.dll rules.json config.json auth.json cdm
           cd ..
 
       - name: release
@@ -49,7 +50,6 @@ jobs:
           prerelease: false
           release_name: ${{ steps.version.outputs.version }}
           tag_name: ${{ github.ref }}
-          body_path: CHANGELOG.md
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
