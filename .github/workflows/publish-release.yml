@@ -30,13 +30,17 @@ jobs:
       - name: Run build
         run: |
           dotnet publish -p Version=${{ steps.version.outputs.version }} --property WarningLevel=0 -c Release -r win10-x64 -o out
+          dotnet publish -p Version=${{ steps.version.outputs.version }} --property WarningLevel=0 -c Release -r linux-x64 -o out2
           pwd
           ls -la 
           ls -la ./OF\ DL/
           ls -la out/
           cp ./OF\ DL/rules.json out/
-          # cp ./OF\ DL/config.json out/
-          # cp ./OF\ DL/auth.json out/
+          chmod +x ./out2/OF\ DL
+          ./out2/OF\ DL --non-interactive
+          ./out2/OF\ DL --non-interactive
+          cp ./out2/config.json out/
+          cp ./out2/auth.json out/
           cd out
           mkdir -p cdm/devices/chrome_1610
           zip ../OFDLV${{ steps.version.outputs.version }}.zip OF\ DL.exe e_sqlite3.dll rules.json config.json auth.json cdm
