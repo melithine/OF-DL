@@ -37,11 +37,9 @@ jobs:
           ls -la out/
           cp ./OF\ DL/rules.json out/
           chmod +x ./out2/OF\ DL
-          ./out2/OF\ DL --non-interactive || true
-          ./out2/OF\ DL --non-interactive || true
-          cp ./out2/config.json out/
-          cp ./out2/auth.json out/
           cd out
+          ../out2/OF\ DL --non-interactive || true
+          ../out2/OF\ DL --non-interactive || true
           mkdir -p cdm/devices/chrome_1610
           zip ../OFDLV${{ steps.version.outputs.version }}.zip OF\ DL.exe e_sqlite3.dll rules.json config.json auth.json cdm
           cd ..
