@@ -37,8 +37,8 @@ jobs:
           ls -la out/
           cp ./OF\ DL/rules.json out/
           chmod +x ./out2/OF\ DL
-          ./out2/OF\ DL --non-interactive
-          ./out2/OF\ DL --non-interactive
+          ./out2/OF\ DL --non-interactive || true
+          ./out2/OF\ DL --non-interactive || true
           cp ./out2/config.json out/
           cp ./out2/auth.json out/
           cd out
